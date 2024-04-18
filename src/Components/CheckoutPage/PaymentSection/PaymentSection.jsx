@@ -18,7 +18,7 @@ const PaymentSection = () => {
       <PaymentProducts data={cartProducts} />
       <PaymentCalculation />
       <PaymentOptionsSelection />
-      <AddCoupon />
+      {/* <AddCoupon /> */}
 
       <button type="submit" className={s.submitPaymentButton} >
         Place Order

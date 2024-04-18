@@ -10,7 +10,8 @@ import {
 } from "src/Functions/helper";
 import s from "./SignUpForm.module.scss";
 import { openSignWithGooglePopUp } from "../SignUpWithGoogle/SignUpWithGooglePopup";
-import { ToastContainer } from "react-toastify";
+import { ToastContainer, toast } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 
 const SignUpForm = () => {
   const dispatch = useDispatch();
@@ -33,31 +34,31 @@ const SignUpForm = () => {
     const isFormValid = simpleValidationCheck(inputs);
 
 
-    console.log(formData,"=formData");
+    console.log(formData, "=formData");
 
-    let obj={
-      email:formData.emailOrPhone,
-      password:formData.password,
-      username:formData.username
+    let obj = {
+      email: formData.emailOrPhone,
+      password: formData.password,
+      username: formData.username
     }
 
 
-    let res= await fetch('https://api.freeapi.app/api/v1/users/register',{
-      method:"POST",
-      headers:{
-"Content-type":"application/json"
+    let res = await fetch('https://api.freeapi.app/api/v1/users/register', {
+      method: "POST",
+      headers: {
+        "Content-type": "application/json"
       },
-      body:JSON.stringify(obj)
-    }).then(res=> res.json())
+      body: JSON.stringify(obj)
+    }).then(res => res.json())
 
-console.log(res,"==res");
-if(res.statusCode==200){
-  dispatch(setLoginData(formData));
+    console.log(res, "==res");
+    if (res.statusCode == 200) {
+      dispatch(setLoginData(formData));
       navigateTo("/", { replace: true });
-}
-else{
-  toast.error(res.message)
-}
+    }
+    else {
+      toast.error(res.message)
+    }
 
     // if (isFormValid) {
     //   const isUserAlreadySignedUp = compareDataToObjValue(
@@ -105,55 +106,55 @@ else{
 
   return (
     <>
-    <ToastContainer />
-    <form action="GET" className={s.form} onSubmit={signUp}>
-      <h2>Create an account</h2>
-      <p>Enter your details below</p>
+      <ToastContainer />
+      <form action="GET" className={s.form} onSubmit={signUp}>
+        <h2>Create an account</h2>
+        <p>Enter your details below</p>
 
-      <div className={s.inputs}>
-        <input
-          type="text"
-          name="username"
-          placeholder="Full Name"
-          onChange={(e) => (username.current = e.target.value)}
-          required
-        />
-        <input
-          type="text"
-          name="emailOrPhone"
-          placeholder="Email or Phone Number"
-          onChange={(e) => (emailOrPhone.current = e.target.value)}
-          required
-        />
-        <input
-          type="password"
-          name="password"
-          placeholder="Password"
-          onChange={(e) => (password.current = e.target.value)}
-          required
-        />
-      </div>
+        <div className={s.inputs}>
+          <input
+            type="text"
+            name="username"
+            placeholder="Full Name"
+            onChange={(e) => (username.current = e.target.value)}
+            required
+          />
+          <input
+            type="text"
+            name="emailOrPhone"
+            placeholder="Email or Phone Number"
+            onChange={(e) => (emailOrPhone.current = e.target.value)}
+            required
+          />
+          <input
+            type="password"
+            name="password"
+            placeholder="Password"
+            onChange={(e) => (password.current = e.target.value)}
+            required
+          />
+        </div>
 
-      <div className={s.buttons}>
-        <button type="submit" className={s.createAccBtn}>
-          Create Account
-        </button>
+        <div className={s.buttons}>
+          <button type="submit" className={s.createAccBtn}>
+            Create Account
+          </button>
 
-        <button
+          {/* <button
           type="button"
           className={s.signUpBtn}
           onClick={handleSignUpWithGoogle}
         >
           <img src={googleIcon} alt="Colored Google icon" />
           <span>Sign up with Google</span>
-        </button>
+        </button> */}
 
-        <p>
-          <span>Already have account?</span>
-          <NavLink to="/login">Log in</NavLink>
-        </p>
-      </div>
-    </form>
+          <p>
+            <span>Already have account?</span>
+            <NavLink to="/login">Log in</NavLink>
+          </p>
+        </div>
+      </form>
     </>
   );
 };

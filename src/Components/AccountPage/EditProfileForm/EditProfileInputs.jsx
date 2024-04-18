@@ -1,16 +1,24 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import EditProfileInput from "./EditProfileInput";
 import s from "./EditProfileInputs.module.scss";
 
 const EditProfileInputs = () => {
   const { loginInfo } = useSelector((state) => state.user);
+  const { signedUpUsers } = useSelector((state) => state.user);
   const { username, emailOrPhone } = loginInfo;
   const firstLastUserName = username.split(" ");
   const [firstName, setFirstName] = useState(firstLastUserName[0]);
   const [lastName, setLastName] = useState(firstLastUserName[1]);
-  const [emailOrPhoneState, setEmailOrPhoneState] = useState(emailOrPhone);
+  const [emailOrPhoneState, setEmailOrPhoneState] = useState(signedUpUsers.email);
   const [newPassword, setNewPassword] = useState("");
+
+
+
+  useEffect(() => {
+    let name = localStorage.getItem("name") || "Guest"
+    setFirstName(name.split(" ")[0])
+  }, [])
 
   return (
     <section className={s.inputs}>

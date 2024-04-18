@@ -22,7 +22,7 @@ const Cart = () => {
             <CartButtons />
 
             <div className={s.wrapper}>
-              <AddCoupon />
+              {/* <AddCoupon /> */}
               <CartInfoMenu />
             </div>
           </div>

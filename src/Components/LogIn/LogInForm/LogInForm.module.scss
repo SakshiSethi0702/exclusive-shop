@@ -40,6 +40,15 @@
   flex-direction: column;
 }
 
+.buttons>p>span {
+  display: inline-block;
+  margin-right: 10px;
+}
+
+.spans{
+  margin-left: 20px;
+}
+
 .inputs>input {
   border: none;
   outline: none;
@@ -81,16 +90,19 @@
   color: var(--regular-light-gray);
 }
 
-.buttons {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin: 40px 0 20px;
-}
+// .buttons {
+//   display: flex;
+//   align-items: center;
+//   justify-content: space-between;
+//   gap:10px;
+//   margin: 40px 0 20px;
+// }
 
 .loginBtn {
-  width: 143px;
+  width: 100%;
   padding: 16px;
+  margin-top: 20px;
+  margin-bottom: 20px;
   border-radius: 4px;
   background-color: var(--orange-degree2);
   border: solid 2px var(--orange-degree2);

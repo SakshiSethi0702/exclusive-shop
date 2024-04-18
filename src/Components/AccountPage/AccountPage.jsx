@@ -5,9 +5,16 @@ import PagesHistory from "../Shared/MiniComponents/PagesHistory/PagesHistory";
 import AccountMenuSection from "./AccountMenuSection/AccountMenuSection";
 import s from "./AccountPage.module.scss";
 import EditProfileForm from "./EditProfileForm/EditProfileForm";
+import { useEffect, useState } from "react";
 
 const AccountPage = () => {
   const { loginInfo } = useSelector((state) => state.user);
+  const [username,setUsername] = useState('')
+
+  useEffect(()=>{
+let name= localStorage.getItem("name") || "Guest"
+setUsername(name) 
+  },[])
 
   return (
     <>
@@ -21,7 +28,7 @@ const AccountPage = () => {
             <PagesHistory history={["/", "My Account"]} />
 
             <p className={s.welcomeMessage}>
-              Welcome! <Link to="/profile">{loginInfo.username}</Link>
+              Welcome! <Link to="/profile">{username}</Link>
             </p>
           </div>
 

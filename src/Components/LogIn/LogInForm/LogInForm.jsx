@@ -1,6 +1,6 @@
 import { useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { newSignUp } from "src/Features/userSlice";
 import { simpleValidationCheck } from "src/Functions/componentsFunctions";
 import s from "./LogInForm.module.scss";
@@ -47,7 +47,8 @@ const LogInForm = () => {
 
     console.log(res, "==res");
     if (res.statusCode == 200) {
-      dispatch(newSignUp(signedUpUsers));
+      localStorage.setItem("name",res?.data?.user?.username)
+      dispatch(newSignUp(obj));
       navigateTo("/", { replace: true });
     }
     else {
@@ -91,8 +92,11 @@ const LogInForm = () => {
         <button type="submit" className={s.loginBtn}>
           Log In
         </button>
+        <p className={s.spans}>
+          <span>Don't have account?</span>
+          <NavLink to="/signup">Register</NavLink>
+        </p>
 
-        <a href="#">Forget Password?</a>
       </div>
     </form>
   );

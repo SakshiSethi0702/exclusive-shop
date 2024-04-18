@@ -1,6 +1,6 @@
 /* ThankYouModal.css */
 .modal {
-    position: absolute; /* Position the modal */
+    position: fixed; /* Position the modal */
     z-index: 1; /* Ensure it's on top of other elements */
     left: 0;
     top: 0;
