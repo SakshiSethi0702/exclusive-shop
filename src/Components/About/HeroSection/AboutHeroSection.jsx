@@ -2,6 +2,8 @@ import { womenShopping } from "src/Assets/Images/Images";
 import s from "./AboutHeroSection.module.scss";
 
 const AboutHeroSection = () => {
+
+  console.log("about section")
   return (
     <section className={s.heroSection}>
       <section className={s.content}>
